@@ -1,0 +1,13 @@
+
+TODO:
+- formatted strings (f-strings) in python
+
+
+__init__.py in a folder makes the folder to a package
+
+x = 1 if isActive = true else 0
+
+from packagename.modulename import NameOfClass
+from packageName.modulename import functionName, otherFunctionName
+
+
