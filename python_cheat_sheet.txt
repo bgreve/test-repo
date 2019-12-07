@@ -1,7 +1,22 @@
 
 TODO:
 - formatted strings (f-strings) in python
+- what is a get request
+- what is a decorator
+- how do context managers work
 
+
+----------------------------------------
+pip
+----------------------------------------
+
+Install package x: pip install x
+Upgrade package x: pip install -U x
+Uninstall package x: pip uninstall x
+Install packages from file: pip install -r nameOfFile
+
+(pip install virtualenv) --> not required on python 3
+python -m venv nameOfVirtualEnvironment
 
 __init__.py in a folder makes the folder to a package
 
@@ -9,5 +24,94 @@ x = 1 if isActive = true else 0
 
 from packagename.modulename import NameOfClass
 from packageName.modulename import functionName, otherFunctionName
+
+for color in listOfColors:
+    print(color)
+
+for color in reversed(listOfColors):
+    print(color)
+
+# unpacking
+for i, color in enumerate(colors):
+    print(i, "-->", color)
+
+for name, color in zip(names, colors):
+    print(name, "-->", color)
+# problem: zip creates large lists --> izip gives an iterator
+
+# don't use comparison function
+print(sorted(colors, key=len))
+
+for block iter(partial(f.read, 32), ""):
+    blocks.append(block)
+
+for k, v in d.items():
+# better
+for k, v in d.iteritems():
+
+d = dict(izip(names, colors))
+
+# dict vs defaultdict?
+
+# use keyword arguments
+
+# tuple unpacking
+fname, lname, age, email = person
+
+# names = ["a", "b", "c"]
+# concat to csv: print ", ".join(names)
+
+# avoid 
+del names[0]
+names.pop(0)
+names.insert(0, "mark")
+# better: double-ended queue
+names = deque(listOfNames)
+del names[0]
+names.popleft()
+names.appendleft("mark")
+
+# decorators and context managers
+@cache
+def web_lookup(url):
+    return urllib.urlopen(url).read()
+# only for functions that return the same value when given the same input
+
+def cache(func):
+    saved = {}
+    @wraps(func)
+    def newfunc(*args):
+        if args in saved:
+            return newfunc(*args)
+        result = func(*args)
+        saved[args] = result
+        return result
+    return newfunc
+
+# use context managers every time you have setup and teardown logic
+with localcontext(Context(prec=50)):
+    print Decimal(355) / Decimal(113)
+
+try:
+    ...
+finally:
+    ...
+try:
+    ...
+except:
+    pass
+
+with lock:
+    print("asdf")
+
+with ignored(OSError):
+    os.remove("somefile.tmp")
+
+# rule: one logical line of code equals one sentence in English
+
+# sum of squares from 1 to 10 (?)
+print(sum(i**2 for i in xrange(10)))
+
+
 
 
